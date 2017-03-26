@@ -1,7 +1,12 @@
 package model;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "backup")
 public class Backup
 {
   private int id;
@@ -12,8 +17,9 @@ public class Backup
   
   public Backup() {}
   
-  public Backup(String descricao, Date dataInicio) {
+  public Backup(String descricao, Date dataInicio, Date dataTermino) {
     this.dataInicio = dataInicio;
+    this.dataTermino = dataTermino;
     this.descricao = descricao;
     situacao = SituacaoBackup.PENDENTE;
   }
@@ -26,6 +32,7 @@ public class Backup
     this.situacao = situacao;
   }
   
+  @Id
   public int getId() {
     return id;
   }
