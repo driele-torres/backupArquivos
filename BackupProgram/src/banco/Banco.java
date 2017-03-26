@@ -1,78 +1,43 @@
 package banco;
 
-import java.sql.Connection;
-import java.sql.Statement;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
 
-public class Banco
-{
-  private static String nome = "test.db";
-  private static String driver = "org.sqlite.JDBC";
-  private static String endereco = "jdbc:sqlite:";
-  
-  public Banco() {}
-  
-  public static void iniciaConexao() { 
-    Connection c = null;
-    try {
-      Class.forName(driver);
-      c = java.sql.DriverManager.getConnection(endereco + nome);
-    } catch (Exception e) {
-      System.err.println(e.getClass().getName() + ": " + e.getMessage());
-      System.exit(0);
-    }
-    System.out.println("Opened database successfully");
-  }
-  
-  private static Connection c;
-  
-  public String getNome() { return nome; }
-  
+public class Banco {
 
-  public void setNome(String nome) {
-    nome = nome;
-  }
-  
-  public String getDriver() {
-    return driver;
-  }
-  
-  public void setDriver(String driver) {
-    driver = driver;
-  }
-  
-  public String getEndereco() {
-    return endereco;
-  }
-  
-  public void setEndereco(String endereco) {
-    endereco = endereco;
-  }
-  
-  public Connection getConnection() {
-    if (c == null)
-      iniciaConexao();
-    return c;
-  }
-  public void initBanco(Connection c){
-    Statement stmt = null;
-    if (c != null){
-    try {
-      stmt = c.createStatement();
-      
-      String sql = "CREATE TABLE COMPANY " +
-                   "(ID INT PRIMARY KEY     NOT NULL," +
-                   " NAME           TEXT    NOT NULL, " + 
-                   " AGE            INT     NOT NULL, " + 
-                   " ADDRESS        CHAR(50), " + 
-                   " SALARY         REAL)"; 
-      stmt.executeUpdate(sql);
-      stmt.close();
-      c.close();
-    } catch ( Exception e ) {
-      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-      System.exit(0);
+    private static SessionFactory sessionFactory = null;
+    private static ServiceRegistry serviceRegistry = null;
+    private static Configuration configuration = null;
+
+    public static SessionFactory createSessionFactory() {
+        configuration = new Configuration();
+        configuration.configure();
+        serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
+                configuration.getProperties()).build();
+        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        return sessionFactory;
     }
-    System.out.println("Table created successfully");
+
+    public static Session getSession() {
+        if (sessionFactory == null) {
+            createSessionFactory();
+        }
+        return sessionFactory.openSession();
     }
-  }
+
+    public static Configuration getConfig() {
+        if (configuration == null) {
+            createSessionFactory();
+        }
+        return configuration;
+    }
+
+    public static void createTables(){
+        SchemaExport se = new SchemaExport(getConfig());
+        se.create(true, true);
+    }
 }

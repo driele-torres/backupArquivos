@@ -6,15 +6,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-//import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import view.TelaPrincipal;
 
 public class BackupProgram{
     public static void main(String[] args) {
-        Banco.iniciaConexao();
-        
+    Banco.createTables();
     try
     {
       for (UIManager.LookAndFeelInfo info: UIManager.getInstalledLookAndFeels()) {
@@ -37,8 +35,7 @@ public class BackupProgram{
                 tela.add(scroll);
                 tela.setVisible(true);
             }
-        });  
-//        SwingUtilities.invokeLater();
+        });
     }
    
 }

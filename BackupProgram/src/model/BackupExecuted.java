@@ -1,13 +1,39 @@
 package model;
 
-import java.util.Date;
+import java.io.Serializable;
+import static javax.persistence.GenerationType.IDENTITY;
 
-public class BackupExecuted {
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "backupexecuted_table")
+public class BackupExecuted implements Serializable {
     
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "idExecuted", unique = true, nullable = false)
     private int id;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "backup",  nullable = true)	
     private Backup backup;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_executed", nullable = false)
     private Date dataExecuted;
-    private SituacaoBackup estado;
+    
+    @Column(name = "situacao_backup", nullable = false)
+    private SituacaoBackup situacao;    
 
     public int getId() {
         return id;
@@ -33,11 +59,11 @@ public class BackupExecuted {
         this.dataExecuted = dataExecuted;
     }
 
-    public SituacaoBackup getEstado() {
-        return estado;
+    public SituacaoBackup getSituacao() {
+        return situacao;
     }
 
-    public void setEstado(SituacaoBackup estado) {
-        this.estado = estado;
+    public void setSituacao(SituacaoBackup situacao) {
+        this.situacao = situacao;
     }
 }

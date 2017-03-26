@@ -3,18 +3,19 @@
 
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
-    
+        
+        <property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
-        <property name="dialect">org.hibernate.dialect.SQLiteDialect</property>
         <property name="connection.driver_class">org.sqlite.JDBC</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</property>
+        <property name="hibernate.connection.autocommit">true</property>
         <property name="hibernate.connection.url">jdbc:sqlite:backup.db</property>
         <property name="connection.username"></property>
         <property name="connection.password"></property>
-         
-        <property name="hibernate.hbm2ddl.auto">update</property>
-         
-        <mapping class="Backup"/>
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+        <mapping class="model.Backup"/>
+        <mapping class="model.BackupExecuted"/>
+        
   </session-factory>
 </hibernate-configuration>
