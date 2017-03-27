@@ -47,9 +47,10 @@ public class BackupProgram {
                 JScrollPane scroll = new JScrollPane();
                 tela.add(scroll);
                 tela.setVisible(true);
+                
 //                Properties prop = new Properties();
 //                InputStream input;
-//
+
 //                try {
 //
 //                    InputStream resourceAsStream = BackupProgram.class.getResourceAsStream("/Text.properties");
@@ -57,15 +58,15 @@ public class BackupProgram {
 //                } catch (IOException e1) {
 //                    e1.printStackTrace();
 //                }
-
-//                try {
+////
+////                try {
 ////                    input = new FileInputStream("./Text.properties");
 ////                    prop.load(input);
-//                } catch (FileNotFoundException ex) {
-//                    Logger.getLogger(BackupProgram.class.getName()).log(Level.SEVERE, null, ex);
-//                } catch (IOException ex) {
-//                    Logger.getLogger(BackupProgram.class.getName()).log(Level.SEVERE, null, ex);
-//                }
+////                } catch (FileNotFoundException ex) {
+////                    Logger.getLogger(BackupProgram.class.getName()).log(Level.SEVERE, null, ex);
+////                } catch (IOException ex) {
+////                    Logger.getLogger(BackupProgram.class.getName()).log(Level.SEVERE, null, ex);
+////                }
 //                JFrame testFrame = new JFrame();
 //                testFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 //                testFrame.setSize(500, 500);

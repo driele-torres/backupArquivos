@@ -38,6 +38,18 @@ public class Backup implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "backup")
     private List<BackupExecuted> backupExecutados;
+    
+    @Column(name = "default_name", nullable = false)
+    private String arquivoName; 
+    
+
+    public String getArquivoName() {
+        return arquivoName;
+    }
+
+    public void setArquivoName(String arquivoName) {
+        this.arquivoName = arquivoName;
+    }
 
     public Backup() {
     }

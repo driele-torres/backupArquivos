@@ -34,6 +34,17 @@ public class BackupExecuted implements Serializable {
     
     @Column(name = "situacao_backup", nullable = false)
     private SituacaoBackup situacao;    
+    
+    @Column(name = "arquivo_destino", nullable = false)
+    private String arquivoDestino;    
+
+    public String getArquivoDestino() {
+        return arquivoDestino;
+    }
+
+    public void setArquivoDestino(String arquivoDestino) {
+        this.arquivoDestino = arquivoDestino;
+    }
 
     public int getId() {
         return id;

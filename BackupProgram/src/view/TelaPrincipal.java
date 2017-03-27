@@ -57,6 +57,7 @@ public class TelaPrincipal extends JFrame{
 //        panel.add(buttonRestore, genConstraint(1, 0, 1, 1));
 //        panel.add(buttonRemove , genConstraint(2, 0, 1, 1));
         panel.add(new PanelUp(), genConstraint(0, 0, 1, 1));
+        
 
 //        panel.add(buttonBackup,genConstraint(COLUNA,LINHA,QUANTAS CELULAS ELE OCUPA NA LINHA,QUANTAS CELULAS ELE OCUPA NA COLUNA));
         this.add(panel);
