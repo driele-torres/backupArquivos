@@ -5,7 +5,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
+//import org.hibernate.boot.MetadataSources;
+//import org.hibernate.boot.spi.MetadataImplementor;
+//import org.hibernate.tool.hbm2ddl.SchemaExport;
+            
 
 public class Banco {
 
@@ -14,7 +17,10 @@ public class Banco {
     private static Configuration configuration = null;
 
     public static SessionFactory createSessionFactory() {
+        
         configuration = new Configuration();
+        configuration.addAnnotatedClass(model.Backup.class);
+        configuration.addAnnotatedClass(model.BackupExecuted.class);
         configuration.configure();
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
                 configuration.getProperties()).build();
@@ -36,8 +42,17 @@ public class Banco {
         return configuration;
     }
 
-    public static void createTables(){
-        SchemaExport se = new SchemaExport(getConfig());
-        se.create(true, true);
-    }
+//    public static void createTables(){
+//    MetadataSources metadata = new MetadataSources(new StandardServiceRegistryBuilder().applySettings(
+//                getConfig().getProperties()).build());
+//    
+//    SchemaExport export = new SchemaExport(
+//            (MetadataImplementor) metadata.buildMetadata()
+//    );
+//    export.setDelimiter(";");
+//    export.setOutputFile("isso.sql");
+//    export.setFormat(true);
+//    export.create(true, true);
+//    export.execute(true, false, false, false);
+//    }
 }

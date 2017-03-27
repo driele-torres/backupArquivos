@@ -17,7 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "backup_table")
+@Table(name = "backup")
 public class Backup implements Serializable {
 
     @Id
@@ -36,7 +36,7 @@ public class Backup implements Serializable {
     @Column(name = "data_termino", nullable = true)
     private Date dataTermino;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "backup_table")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "backup")
     private List<BackupExecuted> backupExecutados;
 
     public Backup() {

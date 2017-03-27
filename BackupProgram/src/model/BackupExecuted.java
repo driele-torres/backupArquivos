@@ -16,16 +16,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "backupexecuted_table")
+@Table(name = "backupexecuted")
 public class BackupExecuted implements Serializable {
     
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "idExecuted", unique = true, nullable = false)
+    @Column(name = "idbackupexecuted", unique = true, nullable = false)
     private int id;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "backup",  nullable = true)	
+    @JoinColumn(name = "idbackup",  nullable = false)
     private Backup backup;
     
     @Temporal(TemporalType.DATE)

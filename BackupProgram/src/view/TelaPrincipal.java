@@ -14,6 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 public class TelaPrincipal extends JFrame{
     public JButton buttonBackup ;
@@ -50,13 +53,13 @@ public class TelaPrincipal extends JFrame{
        
         
         panel = new JPanel(new GridBagLayout());
-        panel.add(buttonBackup , genConstraint(0, 0, 1, 1));
-        panel.add(buttonRestore, genConstraint(1, 0, 1, 1));
-        panel.add(buttonRemove , genConstraint(2, 0, 1, 1));
+//        panel.add(buttonBackup , genConstraint(0, 0, 1, 1));
+//        panel.add(buttonRestore, genConstraint(1, 0, 1, 1));
+//        panel.add(buttonRemove , genConstraint(2, 0, 1, 1));
+        panel.add(new PanelUp(), genConstraint(0, 0, 1, 1));
 
 //        panel.add(buttonBackup,genConstraint(COLUNA,LINHA,QUANTAS CELULAS ELE OCUPA NA LINHA,QUANTAS CELULAS ELE OCUPA NA COLUNA));
         this.add(panel);
-        
         addActionListeners();
     }
     
